@@ -1,0 +1,142 @@
+<div class="container mx-auto px-4 py-8">
+
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="flex items-center justify-between">
+
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl  bg-primary  flex items-center justify-center shadow-lg">
+          <i class="fa-solid fa-box text-white text-xl"></i>
+        </div>
+
+        <div>
+          <h1 class="text-2xl font-bold">My Orders</h1>
+          <p class="text-gray-500 text-sm">Track and manage your orders</p>
+        </div>
+      </div>
+
+      <a routerLink="/" class="text-primary flex items-center gap-2 text-sm">
+        <i class="fa-solid fa-bag-shopping"></i>
+        Continue Shopping
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Orders -->
+  <div class="space-y-6">
+
+    <!-- Order Card -->
+  @for (item of ordersList(); track item._id) {
+
+<div class="bg-white rounded-2xl shadow p-6">
+  <div class="flex gap-5">
+
+    <!-- Image -->
+    <div class="relative">
+      <img [src]="item.cartItems[0]?.product?.imageCover"
+           class="w-28 h-28 object-contain rounded-xl p-2">
+
+      <span class="absolute -top-2 -right-2 bg-black text-white text-xs w-6 h-6 flex items-center justify-center rounded-full">
+        +{{ item.cartItems.length - 1 }}
+      </span>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1">
+
+      <!-- Top -->
+      <div class="flex justify-between items-start mb-3">
+
+        <div>
+          <span class="text-xs px-2 py-1 rounded"
+                [class]="item.isDelivered ? 'bg-green-100 text-green-600' : 'bg-yellow-100 text-yellow-600'">
+
+            <i class="fa-solid"
+               [class]="item.isDelivered ? 'fa-check' : 'fa-clock'"></i>
+
+            {{ item.isDelivered ? 'Delivered' : 'Processing' }}
+          </span>
+
+          <h3 class="font-bold mt-2">
+            <i class="fa-solid fa-hashtag text-gray-400"></i>
+            {{ item.id }}
+          </h3>
+        </div>
+
+        <div class="bg-gray-100 p-2 rounded-lg">
+          <i class="fa-solid"
+             [class]="item.paymentMethodType === 'cash' ? 'fa-money-bill' : 'fa-credit-card'">
+          </i>
+        </div>
+
+      </div>
+
+      <!-- Info -->
+      <div class="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
+
+        <span>
+          <i class="fa-solid fa-calendar mr-1"></i>
+          {{ item.createdAt | date:'mediumDate' }}
+        </span>
+
+        <span>
+          <i class="fa-solid fa-box mr-1"></i>
+          {{ item.cartItems.length }} items
+        </span>
+
+        <span>
+          <i class="fa-solid fa-location-dot mr-1"></i>
+          {{ item.shippingAddress.city }}
+        </span>
+
+      </div>
+
+      <!-- Bottom -->
+      <div class="flex justify-between items-center">
+
+        <div>
+          <span class="text-xl font-bold">
+            {{ item.totalOrderPrice }}
+          </span>
+          <span class="text-gray-400 text-sm">EGP</span>
+        </div>
+
+        <button class="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200 flex items-center gap-2">
+          Details
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+}
+  @empty {
+        <div class="text-center px-4 max-w-md mx-auto">
+          <div class="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-gray-50 mb-8">
+            <i class="fa-solid fa-box-open text-6xl text-gray-300"></i>
+          </div>
+
+          <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">No orders yet</h2>
+
+          <p class="text-gray-500 mb-10 text-lg leading-relaxed">
+          When you place orders, they'll appear here <br>
+            so you can track them.
+          </p>
+
+          <button
+          routerLink="/"
+            class="inline-flex items-center justify-center gap-3 rounded-xl bg-emerald-500 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:bg-emerald-600 hover:-translate-y-0.5 focus:ring-4 focus:ring-emerald-100 focus:outline-hidden shadow-sm hover:shadow-md cursor-pointer"
+          >
+          <i class="fa-solid fa-bag-shopping"></i>
+            Start Shopping
+          </button>
+        </div>
+      }
+
+  </div>
+
+</div>

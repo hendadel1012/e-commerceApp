@@ -1,0 +1,147 @@
+	  <section>
+  <div class="container p-6">
+    <!-- !---------- Title  !----------  -->
+    <div class="mb-8">
+      <div class="flex items-center gap-3 text-3xl font-bold text-gray-900 mb-2">
+        <div class="bg-[#138D46] text-white w-12 h-12 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <h1>WishList</h1>
+      </div>
+      <p class="text-gray-500 text-lg">
+        You have <span class="font-bold text-[#138D46]">{{wishlistDetails().length}} items</span> in wishlist
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- !---------------------- Left side  !---------------------- -->
+      <div class="lg:col-span-12 flex flex-col gap-5">
+        <!-- ?------------- item ?------------- -->
+      @for (item of wishlistDetails(); track item._id) {
+          <div
+          class="flex flex-col sm:flex-row items-center gap-6 border border-gray-200 rounded-2xl p-5 bg-white shadow-sm"
+        >
+          <!-- img  -->
+          <div class="flex flex-col items-center gap-3 shrink-0">
+            <div
+              class="w-32 h-32 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-100 overflow-hidden"
+            >
+              <img
+                [src]="item.imageCover"
+                [alt]="item.title"
+                class="object-cover mix-blend-multiply"
+              />
+            </div>
+            @if (item.quantity>0) {
+              <span
+              class="bg-[#138D46] text-white text-2xs font-bold px-3 py-1 rounded-full flex items-center gap-1"
+            >
+              <i class="fa-solid fa-check"></i> In Stock
+            </span>
+            }@else{
+              <span
+              class="bg-danger text-white text-2xs font-bold px-3 py-1 rounded-full flex items-center gap-1"
+            >
+              <i class="fa-solid fa-close"></i> Out Of Stock
+            </span>
+            }
+          </div>
+
+          <!-- product details  -->
+          <div class="flex-1 w-full">
+            <h3 class="font-bold text-xl text-gray-900">{{item.title}}</h3>
+            <div class="flex items-center gap-3 text-sm text-gray-500 mt-2">
+              <span class="bg-green-50 text-[#138D46] px-3 py-1 rounded-full text-xs font-medium"
+                >{{item.category.name}}</span
+              >
+              <span class="text-gray-300">•</span>
+              <span class="text-xs">SKU: {{item._id.slice(0,6)}}</span>
+            </div>
+            <div class="mt-4 font-bold text-[#138D46] text-xl">
+              {{item.price}} EGP <span class="text-xs text-gray-400 font-normal">per unit</span>
+            </div>
+          </div>
+
+          <!-- count & remove  -->
+          <div
+            class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto mt-4 sm:mt-0"
+          >
+            <!-- <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden h-10">
+              <button
+              (click)="update(item.product._id,item.count-1)"
+                class="px-3 h-full text-gray-500 hover:bg-gray-100 transition-colors focus:outline-hidden"
+              >
+                <i class="fa-solid fa-minus text-xs"></i>
+              </button>
+
+              <span class="px-3 font-bold text-gray-900 min-w-10 text-center">{{item.count}}</span>
+
+              <button
+              (click)="update(item.product._id,item.count+1)"
+                class="px-3 h-full bg-[#138D46] text-white hover:bg-green-700 transition-colors focus:outline-hidden"
+              >
+                <i class="fa-solid fa-plus text-xs"></i>
+              </button>
+            </div> -->
+
+            <!-- <div class="text-right min-w-16">
+              <div class="text-xs text-gray-400 mb-0.5">Total</div>
+              <div class="font-bold text-xl text-gray-900">
+                {{item.quantity * item.price}} <span class="text-xs font-normal">EGP</span>
+              </div>
+            </div> -->
+
+            <button
+            (click)="removeItem(item._id)"
+              class="w-10 h-10 flex items-center justify-center bg-red-50 text-red-500 rounded-lg hover:bg-red-100 transition-colors focus:outline-hidden"
+            >
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      }
+      @empty {
+        <div class="text-center px-4 max-w-md mx-auto">
+          <div class="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-gray-50 mb-8">
+            <i class="fa-solid fa-heart text-6xl text-gray-300"></i>
+          </div>
+
+          <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Your wishlist is empty</h2>
+
+          <p class="text-gray-500 mb-10 text-lg leading-relaxed">
+           Browse products and save your favorites here.
+          </p>
+
+          <button
+          routerLink="/shop"
+            class="inline-flex items-center justify-center gap-3 rounded-2xl bg-emerald-500 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:bg-emerald-600 hover:-translate-y-0.5 focus:ring-4 focus:ring-emerald-100 focus:outline-hidden shadow-sm hover:shadow-md cursor-pointer"
+          >
+            Browse Products
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      }
+
+        <!-- Continue Shopping & clear all  -->
+
+        <!-- <div class="flex items-center justify-between pt-4 mt-2">
+          <button
+          routerLink="/shop"
+            class="text-[#138D46] font-medium hover:underline flex items-center gap-2 focus:outline-hidden"
+          >
+            <i class="fa-solid fa-arrow-left-long"></i> Continue Shopping
+          </button>
+          <button
+          (click)="clear()"
+            class="text-gray-400 hover:text-red-500 font-medium flex items-center gap-2 transition-colors focus:outline-hidden"
+          >
+            <i class="fa-solid fa-trash-can text-sm"></i> Clear all items
+          </button>
+        </div> -->
+      </div>
+
+
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,14 @@
+.mySwiper2 swiper-slide{
+width:90px;
+opacity:.6;
+cursor:pointer;
+border:2px solid transparent;
+border-radius:8px;
+overflow:hidden;
+transition:.3s;
+}
+
+.mySwiper2 .active-thumb{
+opacity:1;
+border:2px solid #3b82f6;
+}

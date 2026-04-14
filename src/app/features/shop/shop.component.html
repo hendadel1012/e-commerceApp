@@ -1,0 +1,69 @@
+<section class="relative overflow-hidden">
+
+  <!-- green gradient overlay -->
+  <div class="absolute inset-0 bg-linear-to-br from-primary to-[#4ade80]"></div>
+
+  <!-- content -->
+  <div class="relative container mx-auto px-4 py-12 sm:py-16">
+
+    <!-- breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-white/70 mb-6 flex-wrap">
+      <a routerLink="/" class="hover:text-white transition-colors">Home</a>
+      <span class="text-white/40">/</span>
+      <span class="text-white font-medium">All Products</span>
+    </nav>
+
+    <!-- header -->
+    <div class="flex items-center gap-5">
+
+      <!-- icon -->
+      <div
+        class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center shadow-xl ring-1 ring-white/30"
+      >
+        <i class="fa-solid fa-box-open text-white text-2xl"></i>
+      </div>
+
+      <!-- text -->
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          All Products
+        </h1>
+
+        <p class="text-white/80 mt-1">
+          Explore our complete product collection
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="py-10 px-5">
+ <div class="container">
+    <p class="relative text-lg ">Showing {{pageSize()}} products</p>
+
+    <div class="mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      @for (product of productList()| paginate: { id: 'foo',
+                                                      itemsPerPage: pageSize(),
+                                                      currentPage: cp(),
+                                                      totalItems: total() }; track  product._id) {
+        <app-card [product]="product"></app-card>
+      }
+    </div>
+  <div class="flex justify-center items-center my-4">
+      <pagination-controls  id="foo"
+                      (pageChange)="pageChange($event)"
+                      [maxSize]="9"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+  </div>
+  </div>
+</section>

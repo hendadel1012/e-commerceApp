@@ -1,0 +1,126 @@
+<section class="relative overflow-hidden">
+
+  <!-- green gradient overlay -->
+  <div class="absolute inset-0 bg-linear-to-br from-primary to-[#4ade80]"></div>
+
+  <!-- content -->
+  <div class="relative container mx-auto px-4 py-12 sm:py-16">
+
+    <!-- breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-white/70 mb-6 flex-wrap">
+      <a routerLink="/" class="hover:text-white transition-colors">Home</a>
+      <span class="text-white/40">/</span>
+      <span class="text-white font-medium">My Account</span>
+    </nav>
+
+    <!-- header -->
+    <div class="flex items-center gap-5">
+
+      <!-- icon -->
+      <div
+        class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center shadow-xl ring-1 ring-white/30"
+      >
+        <i class="fa-solid fa-user text-white text-2xl"></i>
+      </div>
+
+      <!-- text -->
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          My Account
+        </h1>
+
+        <p class="text-white/80 mt-1">
+          Manage your addresses and account settings
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container mx-auto px-4 py-10 bg-gray-50 min-h-screen">
+  <div class="flex flex-col lg:flex-row gap-8">
+
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-80">
+      <div class="bg-white rounded-2xl shadow-md  p-0 overflow-hidden">
+
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="font-bold text-gray-800 text-lg">My Account</h2>
+        </div>
+
+        <div class="p-4 space-y-2">
+          <!-- Active -->
+          <a routerLink="/profile" class="flex items-center justify-between p-4 rounded-xl bg-green-100 text-green-700">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 flex items-center justify-center bg-green-600 text-white rounded-lg">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <span class="font-medium">My Addresses</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+          </a>
+
+          <!-- Addresses -->
+          <a routerLink="/settings" class="flex items-center justify-between p-4 rounded-xl bg-gray-100 text-gray-600 hover:bg-gray-200 transition">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-lg">
+                <i class="fa-solid fa-gear"></i>
+              </div>
+              <span class="font-medium">Settings</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+          </a>
+
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1">
+
+      <!-- Title -->
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">My Addresses</h2>
+        <p class="text-gray-500 mt-1">
+          Manage your saved delivery addresses
+        </p>
+      </div>
+
+      <!-- Card -->
+      <div class="bg-white rounded-3xl shadow-md  p-8">
+
+        <!-- Header -->
+        <div class="col-span-full flex justify-center items-center h-full px-4">
+
+    <div class="text-center w-full max-w-md mx-auto  rounded-2xl p-6 sm:p-8 ">
+
+      <div class="mx-auto flex h-28 w-28 sm:h-32 sm:w-32 items-center justify-center rounded-full bg-gray-50 mb-6">
+        <i class="fa-solid fa-location-dot text-4xl sm:text-5xl text-gray-300"></i>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 tracking-tight">
+        No Addresses Yet
+      </h2>
+
+      <p class="text-gray-500 mb-6 text-base sm:text-lg leading-relaxed">
+       Add your first delivery address to make checkout faster and easier.
+      </p>
+
+      <button
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-2xl bg-emerald-600 px-6 py-3 text-sm sm:text-base font-semibold text-white transition-all duration-200 hover:bg-emerald-700 hover:-translate-y-0.5 focus:ring-4 focus:ring-emerald-100 shadow-sm hover:shadow-md cursor-pointer"
+      >
+        Add Your First Address
+      </button>
+
+    </div>
+
+  </div>
+      </div>
+    </main>
+  </div>
+
+</div>
+</section>

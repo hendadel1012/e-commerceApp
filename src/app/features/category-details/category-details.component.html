@@ -1,0 +1,89 @@
+<section class="relative overflow-hidden">
+
+  <!-- green gradient overlay -->
+  <div class="absolute inset-0 bg-linear-to-br from-primary to-[#4ade80]"></div>
+
+  <!-- content -->
+  <div class="relative container mx-auto px-4 py-12 sm:py-16">
+
+    <!-- breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-white/70 mb-6 flex-wrap">
+      <a routerLink="/" class="hover:text-white transition-colors">Home</a>
+      <span class="text-white/40">/</span>
+      <a routerLink="/categories" class="hover:text-white transition-colors">Categories</a>
+      <span class="text-white/40">/</span>
+
+      <span class="text-white font-medium">{{categoryDetails().name}}</span>
+    </nav>
+
+    <!-- header -->
+    <div class="flex items-center gap-5">
+
+      <!-- icon -->
+      <div
+        class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center shadow-xl ring-1 ring-white/30"
+      >
+        <img [src]="categoryDetails().image" [alt]="categoryDetails().name" class="w-10 h-13">
+      </div>
+
+      <!-- text -->
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          {{categoryDetails().name}}
+        </h1>
+
+        <p class="text-white/80 mt-1">
+          Choose a subcategory to browse products
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<a routerLink="/categories" class="flex items-center m-5 text-gray-700  hover:text-primary w-40">
+  <i class="fas fa-arrow-left text-xs me-2 "></i>
+  <p>Back to Categories</p>
+</a>
+
+<p class="ms-5 font-bold text-xl text-black">{{subCategory().length}} Subcategories in {{categoryDetails().name}}</p>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6  my-10 ms-5">
+
+  <!-- Card -->
+   @for (item of subCategory(); track item._id) {
+
+  <a (click)="getSubcategoryProducts(item)"
+  class="group bg-white rounded-2xl border border-gray-100 p-6 shadow-sm
+  hover:shadow-xl hover:border-emerald-200 transition-all duration-300 hover:-translate-y-1">
+
+    <!-- Icon -->
+    <div class="w-14 h-14 rounded-xl bg-emerald-50 flex items-center justify-center mb-4
+    group-hover:bg-emerald-100 transition-colors">
+
+      <i class="fas fa-folder-open text-2xl text-emerald-600"></i>
+
+    </div>
+
+    <!-- Title -->
+    <h3 class="font-bold text-gray-900 text-lg
+    group-hover:text-emerald-600 transition-colors mb-2">
+
+      {{item.name}}
+
+    </h3>
+
+    <!-- Hover text -->
+    <div class="flex items-center gap-2 text-sm text-emerald-600
+    opacity-0 group-hover:opacity-100 transition-opacity">
+
+      <span>Browse Products</span>
+      <i class="fas fa-arrow-right text-xs"></i>
+
+    </div>
+
+  </a>
+}
+
+</div>
