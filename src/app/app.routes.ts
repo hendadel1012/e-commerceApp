@@ -75,9 +75,9 @@ export const routes: Routes = [
 {
   path: 'allorders',
   loadComponent: () =>
-    import('./features/orders/orders.component').then((c) => c.OrdersComponent),
+  import('./features/orders/orders.component').then((c) => c.OrdersComponent),
   title: 'My Orders | My Store',
-    canActivate:[authGuard],
+  canActivate:[authGuard],
 },
 {
   path: 'login',
