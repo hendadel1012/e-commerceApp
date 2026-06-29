@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && cp dist/e-commerce/browser/index.html dist/e-commerce/browser/404.html",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:e-commerce": "node dist/e-commerce/server/server.mjs"
